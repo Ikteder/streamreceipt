@@ -1,0 +1,143 @@
+{
+  "schema_version": 1,
+  "corpus": "streamreceipt-authored-v1",
+  "cases": 13,
+  "streamreceipt_correct": 13,
+  "parse_only_correct": 4,
+  "rows": [
+    {
+      "id": "openai-safe",
+      "provider": "openai-chat",
+      "expected": "dispatch_allowed",
+      "actual": "dispatch_allowed",
+      "baseline": "dispatch_allowed",
+      "findings": []
+    },
+    {
+      "id": "anthropic-safe",
+      "provider": "anthropic-messages",
+      "expected": "dispatch_allowed",
+      "actual": "dispatch_allowed",
+      "baseline": "dispatch_allowed",
+      "findings": []
+    },
+    {
+      "id": "openai-no-done",
+      "provider": "openai-chat",
+      "expected": "inconclusive",
+      "actual": "inconclusive",
+      "baseline": "dispatch_allowed",
+      "findings": [
+        "MISSING_DONE"
+      ]
+    },
+    {
+      "id": "openai-no-finish",
+      "provider": "openai-chat",
+      "expected": "inconclusive",
+      "actual": "inconclusive",
+      "baseline": "dispatch_allowed",
+      "findings": [
+        "MISSING_FINISH"
+      ]
+    },
+    {
+      "id": "openai-length",
+      "provider": "openai-chat",
+      "expected": "blocked",
+      "actual": "blocked",
+      "baseline": "dispatch_allowed",
+      "findings": [
+        "UNSAFE_FINISH"
+      ]
+    },
+    {
+      "id": "openai-bad-json",
+      "provider": "openai-chat",
+      "expected": "blocked",
+      "actual": "blocked",
+      "baseline": "blocked",
+      "findings": [
+        "INVALID_TOOL_JSON"
+      ]
+    },
+    {
+      "id": "openai-id-conflict",
+      "provider": "openai-chat",
+      "expected": "blocked",
+      "actual": "blocked",
+      "baseline": "dispatch_allowed",
+      "findings": [
+        "INVALID_TOOL_JSON",
+        "MISSING_DONE",
+        "MISSING_FINISH",
+        "TOOL_METADATA_CONFLICT",
+        "USAGE_UNOBSERVED"
+      ]
+    },
+    {
+      "id": "openai-no-usage",
+      "provider": "openai-chat",
+      "expected": "inconclusive",
+      "actual": "inconclusive",
+      "baseline": "dispatch_allowed",
+      "findings": [
+        "USAGE_UNOBSERVED"
+      ]
+    },
+    {
+      "id": "anthropic-no-stop",
+      "provider": "anthropic-messages",
+      "expected": "inconclusive",
+      "actual": "inconclusive",
+      "baseline": "dispatch_allowed",
+      "findings": [
+        "MISSING_MESSAGE_STOP"
+      ]
+    },
+    {
+      "id": "anthropic-max-tokens",
+      "provider": "anthropic-messages",
+      "expected": "blocked",
+      "actual": "blocked",
+      "baseline": "dispatch_allowed",
+      "findings": [
+        "UNSAFE_FINISH"
+      ]
+    },
+    {
+      "id": "anthropic-open-block",
+      "provider": "anthropic-messages",
+      "expected": "blocked",
+      "actual": "blocked",
+      "baseline": "dispatch_allowed",
+      "findings": [
+        "MISSING_FINISH",
+        "MISSING_MESSAGE_STOP",
+        "OPEN_BLOCK_AT_FINISH",
+        "OPEN_TOOL_BLOCK",
+        "USAGE_UNOBSERVED"
+      ]
+    },
+    {
+      "id": "anthropic-bad-json",
+      "provider": "anthropic-messages",
+      "expected": "blocked",
+      "actual": "blocked",
+      "baseline": "blocked",
+      "findings": [
+        "INVALID_TOOL_JSON"
+      ]
+    },
+    {
+      "id": "anthropic-no-usage",
+      "provider": "anthropic-messages",
+      "expected": "inconclusive",
+      "actual": "inconclusive",
+      "baseline": "dispatch_allowed",
+      "findings": [
+        "USAGE_UNOBSERVED"
+      ]
+    }
+  ]
+}
